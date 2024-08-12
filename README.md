@@ -1,80 +1,187 @@
-## Corelab Challenge:
+# API Core Notes
 
-You are tasked with building a web application that allows users to create and manage their to-do lists. The application should consist of a responsive webpage built in React, and an API built in PHP Laravel to store and manage the to-do lists.
+Este repositório contém o backend de uma aplicação de gerenciamento e criação de notas, desenvolvida utilizando o framework Laravel em PHP. A API suporta operações CRUD (Criar, Ler, Atualizar e Excluir) para tarefas, além de permitir a definição de cores e a marcação de itens como favoritos.
 
-### The repositories
-The [frontend repository](https://github.com/corelabbr/corelab-challenge-web-app-php)
+## Índice
 
-If you feel more comfortable, you can pick another React framework and show us your skills.
+-   [Funcionalidades da API](#funcionalidades-da-api)
+-   [Requisitos](#requisitos)
+-   [Instalação](#instalação)
+-   [Configuração do Banco de Dados](#configuração-do-banco-de-dados)
+-   [Rodando a Aplicação](#rodando-a-aplicação)
+-   [Documentação da API](#documentacão-da-api)
+-   [Estrutura de Pastas](#estrutura-de-pastas)
+-   [Licença](#licença)
 
-The [backend repository](https://github.com/corelabbr/corelab-api-challenge-php)
+## Funcionalidades da API
 
-If you feel more comfortable, you can pick another PHP framework and show us your skills.
+A API oferece as seguintes funcionalidades:
 
-### The Layout
-Open the [layout mockup](https://www.figma.com/file/sQrUVHTlyogq3qGdkqGTXN/mockup?node-id=7%3A2&t=ANTOTiqjqGWYuoUr-0) in desktop and mobile version and follow this design as much as possible.
+-   **Gerenciamento de Tarefas:**
+    -   Criar, ler, atualizar e excluir notas e tarefas.
+    -   Marcar uma nota como favorita.
+    -   Atribuir uma cor a uma nota.
 
-### The application should have the following functionality:
+## Requisitos
 
-1. Users should be able to create, read, update, and delete to-do items using the API.
-2. Users should be able to mark an item as a favorite.
-3. Users should be able to set a color for each to-do item.
-4. The React frontend should display the user's to-do list in a responsive and visually appealing manner, with the ability to filter by favorite items and color.
-5. The favorited items should be displayed at the top of the list.
+Certifique-se de ter as seguintes ferramentas instaladas:
 
-### Technical Requirements:
-1. The backend API should be built in PHP Laravel framework and use a database of your choice (e.g., MySQL, PostgreSQL, etc.).
-2. The frontend should be built in React and use modern web development tools and best practices.
-3. The application should be responsive and visually appealing.
+-   **PHP** (versão 8.2 ou superior)
+-   **Composer** (para gerenciar dependências do PHP)
+-   **PostgreSQL** (como banco de dados)
 
-### Deliverables:
-1. A link to a GitHub repository containing the complete source code for the project.
-2. A written description of how to set up and run the application locally.
+## Instalação
 
-### Evaluation Criteria:
-1. Code Quality
-2. Code Format
-3. Code Performance
-4. Frontend Design
-5. If your code is Easily Readable
-6. Mobile First approach
-7. Code Responsibility
-8. Features Work
-9. Responsiveness
-10. Does the application meet the functionality requirements listed above?
-11. Is the code well-organized, easy to read, and well-documented?
-12. Are modern web development tools and best practices used?
-13. Is the application visually appealing and responsive?
+Siga os passos abaixo para configurar o projeto em sua máquina local.
 
-### Backend
-Repository: 
-1. PHP: ^7.4
-2. Laravel: ^8.0
-3. Database: Choose your own, you can even use PostgreSQL.
+### 1. Clonar o Repositório
 
-### Frontend
-Repository: 
-1. Node: ^16.15.0
-2. NPM: ^8.5.5
-3. Framework: React TS
-4. Sass or other preprocessor
+Abra o terminal e execute o comando abaixo para clonar o repositório:
 
-### Want to impress us even more?
-If you feel comfortable and want to impress us even more, you can do the following:
+```bash
+git clone https://github.com/LucaaasEduaaardo/backedn-core-notes.git
+cd backedn-core
+```
 
-1. Work on correct types and interfaces
-2. Work on eslint rules
-3. Work prettier config
-4. Work on docker containers
-5. Work on tests
-6. Work on CI/CD
+### 2. Instalar Dependências
 
-### What to do when you finish?
+Use o Composer para instalar as dependências do projeto:
 
-Create a file PULL_REQUEST.md where you will describe what you did and how in as much detail as possible. Feel free to add videos for better explanation.
+```bash
+composer install
+```
 
-Create a new pull request using the same branch name for Backend and Frontend
+### 2.1. Ativar extensions pgp
 
-Send us the pull requests and that's all!
+```bash
+php --ini
+```
 
-#### Good luck! The sky is the limit 🚀
+verifique o caminho onde esta salvo, e garanta que essas extensões estão habilitadas
+para habilitar, remova o ; do começo da linha
+
+    extension=curl
+    extension=fileinfo
+    extension=mbstring
+    extension=openssl
+    extension=pdo_mysql
+    extension=pdo_pgsql
+    extension=pgsql
+    extension=tokenizer
+    extension=xml
+    extension=ctype
+    extension=json
+    extension=bcmath
+
+### 3. Configuração do Banco de Dados
+
+O Laravel usa um arquivo `.env` para configurar o ambiente. O exemplo abaixo mostra como configurar o PostgreSQL.
+
+#### 3.1. Configurar o arquivo `.env`
+
+Renomeie o arquivo `.env.example` para `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Abra o arquivo `.env` em um editor de texto e configure as variáveis de ambiente relacionadas ao banco de dados:
+
+```dotenv
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=nome_do_banco
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+```
+
+#### 3.2. Criar o Banco de Dados
+
+Certifique-se de que você tem um banco de dados PostgreSQL criado. Se não tiver, crie um com o comando:
+
+```sql
+CREATE DATABASE nome_do_banco;
+```
+
+### 4. Gerar a Chave da Aplicação
+
+Gere a chave da aplicação Laravel com o comando:
+
+```bash
+php artisan key:generate
+```
+
+### 5. Executar as Migrações
+
+Execute as migrações para criar as tabelas do banco de dados:
+
+```bash
+php artisan migrate
+```
+
+## Rodando a Aplicação
+
+### 1. Iniciar o Servidor de Desenvolvimento
+
+Para iniciar o servidor localmente, utilize o comando:
+
+```bash
+php artisan serve
+```
+
+A API estará disponível em `http://localhost:8000`.
+
+### 2. Testar a API
+
+Você pode usar ferramentas como [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/) para testar os endpoints da API.
+
+> Eu usei o Postman
+
+### 2.1 Documentação da API
+
+## Estrutura de Pastas
+
+A estrutura de pastas do projeto é organizada da seguinte forma:
+
+```
+frontend-core-notes/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── ColorController.php   # Controlador para gerenciamento de cores
+│   │   │   ├── NoteController.php    # Controlador para gerenciamento de notas
+│   │   │   └── Controller.php        # Controlador base
+│   │   └── Resources/
+│   ├── Models/
+│   │   ├── Color.php                 # Modelo de cor
+│   │   └── Note.php                  # Modelo de nota
+│   └── Providers/
+│       └── AppServiceProvider.php    # Provedor de serviços da aplicação
+├── bootstrap/
+├── config/
+├── database/
+│   ├── factories/
+│   ├── migrations/                   # Migrações do banco de dados
+│   └── seeders/                      # Seeders para popular o banco de dados
+├── public/
+├── resources/                        # Recursos da aplicação
+├── routes/
+│   ├── api.php                       # Rotas da API
+│   ├── console.php
+│   └── web.php
+├── storage/
+├── tests/
+├── vendor/
+├── .env
+├── .gitignore
+├── artisan
+├── composer.json
+├── composer.lock
+├── phpunit.xml
+└── README.md
+```
+
+## Licença
+
+Este projeto é licenciado sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais informações.
