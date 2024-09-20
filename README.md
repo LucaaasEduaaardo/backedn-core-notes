@@ -1,8 +1,3 @@
-# [Assista ao vídeo de demonstração](https://drive.google.com/file/d/1ZJZOj3_fa_FfItDlxWnF121OaIba2O8h/view?usp=drive_link)
-# [Assista ao vídeo de demonstração](https://drive.google.com/file/d/1ZJZOj3_fa_FfItDlxWnF121OaIba2O8h/view?usp=drive_link)
-# [Assista ao vídeo de demonstração](https://drive.google.com/file/d/1ZJZOj3_fa_FfItDlxWnF121OaIba2O8h/view?usp=drive_link)
-# [Assista ao vídeo de demonstração](https://drive.google.com/file/d/1ZJZOj3_fa_FfItDlxWnF121OaIba2O8h/view?usp=drive_link)
-
 # API Core Notes
 
 Este repositório contém o backend de uma aplicação de gerenciamento e criação de notas, desenvolvida utilizando o framework Laravel em PHP. A API suporta operações CRUD (Criar, Ler, Atualizar e Excluir) para tarefas, além de permitir a definição de cores e a marcação de itens como favoritos.
